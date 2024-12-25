@@ -4,8 +4,11 @@ import cors from 'cors';
 
 const app = express();
 app.use(express.json()); // Parse JSON payloads
-app.use(cors()); // Allow cross-origin requests
-
+app.use(cors({
+  origin: "https://workoutscheduler-frontend.onrender.com", // Replace with your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // If needed
+}));
 const authMiddleware = (req, res, next) => {
   const token = req.header("Authorization");
 
